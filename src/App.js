@@ -19,6 +19,17 @@ function App() {
     setBpm(event.target.value);
   };
 
+  const playClick = () => {
+    // Change le son du premier beat
+    if (count % beatsPerMeasure === 0) {
+      beat2.play();
+    } else {
+      beat1.play();
+    }
+    setCount(count+1)
+    console.log("count", count);
+  };
+
   const startStop = () => {
     if (playing) {
       // Timer stop
@@ -31,21 +42,8 @@ function App() {
         (60 / bpm) * 1000
       );
       setPlaying(true)
-      playClick()
     }
   };
-
-  const playClick = () => {
-    // Change le son du premier beat
-    if (count % beatsPerMeasure === 0) {
-      beat2.play();
-    } else {
-      beat1.play();
-    }
-    setCount((count+1) % beatsPerMeasure)
-    console.log("count", count);
-  };
-
 
   return (
     <div className="metronome">
